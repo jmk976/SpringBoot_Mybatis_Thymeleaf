@@ -45,6 +45,12 @@ public class NoticeService implements BoardService{
 	public int setInsert(BoardVO boardVO, MultipartFile [] files) throws Exception {
 		// TODO Auto-generated method stub
         int result = noticeMapper.setInsert(boardVO);
+        
+         if(result<1) {
+        	 //예외는 발생하지 않고 결과는 0이 나올경우
+        	 //강제로 예외발생
+        	 throw new Exception();
+         }
 		
 		String filePath="upload/notice/";
 		
