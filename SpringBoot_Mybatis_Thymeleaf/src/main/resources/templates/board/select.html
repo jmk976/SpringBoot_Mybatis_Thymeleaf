@@ -8,7 +8,19 @@
   <div th:replace="/fragments/default :: jumbotron"></div>
   <div class="container">
        <h2 th:text="${vo.title}"></h2>
-       <h2 th:text="${vo.contents}"></h2>
+       <!-- utext HTML 문법을 적용한 텍스트  -->
+       <h2 th:utext="${vo.contents}"></h2>
+       
+       <div th:each="fileVO : ${vo.files}">
+<!--          <a th:href="@{|/upload/${board}/${fileVO.fileName}|}" th:text="${fileVO.oriName}"></a> //이렇게 직ㅇ접 보내기. 2. fileNum 줘서 데베에서 찾게 하기 
+ -->         <a th:href="@{./fileDown(fileName=${fileVO.fileName}, oriName=${fileVO.oriName})}" th:text="${fileVO.oriName}"></a>
+       
+       </div>
+       
+       
+       <a th:href="@{./update(num=${vo.num})}" class="btn btn-success">Update</a>
+       <a th:href="@{./delete(num=${vo.num})}" class="btn btn-danger">Delete</a>
+       
   </div>
   
   <footer th:replace="/fragments/default :: footer"></footer>

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.ic.s1.board.BoardMapper;
 
 //@Repository
-@Mapper     //필수 
+@Mapper     
 public interface NoticeMapper extends BoardMapper {
 
 	// 오버라이딩 안해서 알아서찾아감. getList() 

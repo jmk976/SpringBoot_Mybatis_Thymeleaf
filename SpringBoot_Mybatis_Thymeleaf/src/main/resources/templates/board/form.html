@@ -1,0 +1,24 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="/fragments/summerNote :: head('Board Update')">
+  
+ 
+  </head>
+  <body>
+  <div th:replace="/fragments/default :: header"></div>
+  <div th:replace="/fragments/default :: jumbotron"></div>
+  <div class="container">
+     
+		<div th:replace="/fragments/boardForm :: form(${action}, |${board} ${action}|)">
+			<!-- form -->
+		</div>
+
+  </div>
+  
+  <footer th:replace="/fragments/default :: footer"></footer>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+   <script type="text/javascript">
+   		$("#contents").summernote();
+   </script>
+  </body>
+</html>
