@@ -35,6 +35,8 @@ public class NoticeController {
 		mv.addObject("fileName", fileName);
 		mv.addObject("oriName", oriName);
 		mv.addObject("filePath", "/upload/notice/");
+		
+		// view의 이름은 Bean의 이름과 일치 시켜줘야함
 		mv.setViewName("fileDown");
 		//  /fileDown.html
 		return mv;

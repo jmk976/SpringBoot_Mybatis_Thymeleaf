@@ -61,13 +61,13 @@ public class FileDown extends AbstractView{
 		//다운로드시 파일 이름을 인코딩 처리
 		     fileName = URLEncoder.encode(oriName, "UTF-8");
 		     
-	   //header 설정
+	    //header 설정
 			response.setHeader("Content-Disposition", "attachment;filename=\""+fileName+"\"" );
 			response.setHeader("Content-Transfer-Encoding", "binary");
-	   //HDD에서 파일을 읽고
+	    //HDD에서 파일을 읽고
 			FileInputStream fi = new FileInputStream(file);
 			
-	   //Client로 전송 준비
+	    //Client로 전송 준비
 			OutputStream os = response.getOutputStream();
 			
 		//전송
