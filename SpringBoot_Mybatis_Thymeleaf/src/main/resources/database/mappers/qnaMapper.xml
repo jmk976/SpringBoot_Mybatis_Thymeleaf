@@ -86,7 +86,8 @@
     	
     	<insert id="setReplyInsert" parameterType="BoardVO">
     		 insert into qna(title, writer, contents, contents, ref, step, depth)
-    		        values (#{title}, #{writer}, #{contents}, #{num}, 
+    		        values (#{title}, #{writer}, #{contents},
+    		       (select ref from qna where num=#{num}), 
     		       (select step+1 from qna where num=#{num}), 
     		       (select depth+1) from qna where num=#{num}))
     	</insert>

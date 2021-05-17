@@ -71,8 +71,7 @@ public class QnaController {
 	public String setInsert(BoardVO boardVO, MultipartFile [] files)throws Exception{
 		int result= qnaService.setInsert(boardVO, files);
 	    return "redirect:./list";
-
-	    }
+	}
 	
 	@GetMapping("select")
 	public ModelAndView getSelect(BoardVO boardVO)throws Exception{
@@ -111,6 +110,12 @@ public class QnaController {
 		model.addAttribute("action", "reply");
 		
 		return"board/form";
+	}
+	
+	@PostMapping("reply")
+	public String setReplyInsert(BoardVO boardVO, MultipartFile [] files)throws Exception{
+		int result= qnaService.setReplyInsert(boardVO, files);
+	    return "redirect:./list";
 	}
 		
 }
