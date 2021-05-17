@@ -1,10 +1,51 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/loginHead :: head('Member Page')">
+
 </head>
 <body>
 
+	<!-- header -->
+	<div th:replace="/fragments/default :: header"></div>
+	<!-- jumbo -->
+	 <div th:replace="/fragments/default :: jumbotron"></div>
+	 <!-- /member/memberJoin -->
+	<!-- com....member.MemberController.setJoin -->
+	<h1> Member Page</h1>
+	
+	<div class="container">
+	   <div class="input-group mb-3 flex-nowrap">
+		  <span class="input-group-text" id="addon-wrapping">Username</span>
+		  <input type="text" name="username" value="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+		<div class="input-group mb-3 flex-nowrap">
+		  <span class="input-group-text" id="addon-wrapping">Password</span>
+		  <input type="text" name="password" value="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+		<div class="input-group mb-3 flex-nowrap">
+		  <span class="input-group-text" id="addon-wrapping">  &nbsp;&nbsp; Name &nbsp; &nbsp; </span>
+		  <input type="text" name="name"  value="password" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+		<div class="input-group mb-3 flex-nowrap">
+		  <span class="input-group-text" id="addon-wrapping">&nbsp;&nbsp;&nbsp;  Email  &nbsp;&nbsp;&nbsp;</span>
+		  <input type="text" name="email"  value="password" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+		<div class="input-group mb-3 flex-nowrap">
+		  <span class="input-group-text" id="addon-wrapping">&nbsp;&nbsp;&nbsp; Phone &nbsp;&nbsp;</span>
+		  <input type="text" name="phone"  value="password" class="form-control" placeholder="Phone" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+		
+		<div class="input-group mb-3">
+		  <input type="file" class="form-control" id="inputGroupFile02">
+		  <label class="input-group-text" for="inputGroupFile02">Upload</label>
+		</div>
+		
+		 <input type="submit" id="btn" value="Join" class="btn mb-3 btn-dark"> 
+		
+	</div>
+	<!-- footer -->
+	  <footer th:replace="/fragments/default :: footer"></footer>
 </body>
 </html>

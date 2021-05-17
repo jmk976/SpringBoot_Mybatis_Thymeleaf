@@ -14,6 +14,21 @@ public class MemberService {
 		return memberVO;
 	}
 	
+	public MemberVO memberLogout(MemberVO memberVO)throws Exception{
+		memberVO = memberMapper.memberLogout(memberVO);
+		return memberVO;
+	}
+	
+	public MemberVO memberJoin(MemberVO memberVO)throws Exception{
+		memberVO = memberMapper.memberJoin(memberVO);
+		return memberVO;
+	}
+	
+	public MemberVO memberPage(MemberVO memberVO)throws Exception{
+		memberVO = memberMapper.memberPage(memberVO);
+		return memberVO;
+	}
+	
 	
 	
 
