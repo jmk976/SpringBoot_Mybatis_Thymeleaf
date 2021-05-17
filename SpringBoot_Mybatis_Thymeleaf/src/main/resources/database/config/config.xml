@@ -10,6 +10,7 @@
   		<typeAlias type="com.ic.s1.board.BoardVO" alias="BoardVO" />
   		<typeAlias type="com.ic.s1.board.BoardFileVO" alias="BoardFileVO" />
   		<typeAlias type="com.ic.s1.util.Pager" alias="Pager" />
+  		<typeAlias type="com.ic.s1.member.MemberVO" alias="MemberVO" />
   	</typeAliases>
   
   
