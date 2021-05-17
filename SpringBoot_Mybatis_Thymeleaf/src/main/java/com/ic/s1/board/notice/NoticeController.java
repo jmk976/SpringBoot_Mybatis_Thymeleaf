@@ -73,7 +73,7 @@ public class NoticeController {
 		
 		Object obj = session.getAttribute("member");
 		MemberVO memberVO = null;
-		String path="redirect:../";
+		String path="redirect:/member/login";
 		//it(obj != null){}
 		if(obj instanceof MemberVO) {
 			memberVO =(MemberVO)obj;
@@ -82,7 +82,7 @@ public class NoticeController {
 				path="board/form";
 			}
 		}
-		return "board/form";
+		return path;
 	}
 
 	@PostMapping("insert")
