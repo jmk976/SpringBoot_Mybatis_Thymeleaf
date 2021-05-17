@@ -15,13 +15,19 @@
 	<h1> Member Join Page</h1>
 	
 	<div class="container">
+	
+	  <form action="./join" method="post" enctype="multipart/form-data">
 	   <div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">Username</span>
 		  <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
 		</div>
 		<div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">Password</span>
-		  <input type="text" name="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+		<div class="input-group mb-3 flex-nowrap">
+		  <span class="input-group-text" id="addon-wrapping">Password</span>
+		  <input type="password" name="password2" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping">
 		</div>
 		<div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">  &nbsp;&nbsp; Name &nbsp; &nbsp; </span>
@@ -37,12 +43,12 @@
 		</div>
 		
 		<div class="input-group mb-3">
-		  <input type="file" class="form-control" id="inputGroupFile02">
+		  <input type="file" name="avatar" class="form-control" id="inputGroupFile02">
 		  <label class="input-group-text" for="inputGroupFile02">Upload</label>
 		</div>
 		
 		 <input type="submit" id="btn" value="Join" class="btn mb-3 btn-dark"> 
-		
+		</form>
 	</div>
 	<!-- footer -->
 	  <footer th:replace="/fragments/default :: footer"></footer>

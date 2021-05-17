@@ -6,6 +6,8 @@
   <body>
   <div th:replace="/fragments/default :: header"></div>
   <div th:replace="/fragments/default :: jumbotron"></div>
+  
+  <h1 th:text="|User: ${session.member}|"></h1>
   <footer th:replace="/fragments/default :: footer"></footer>
 		 
    

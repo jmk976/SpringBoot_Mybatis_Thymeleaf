@@ -68,8 +68,8 @@
     	</update>
     	
     	<insert id="setInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="num">
-    		insert into qna(title, writer, contents,ref) 
-    		        values (#{title}, #{writer}, #{contents}, #{ref})
+    		insert into qna(title, writer, contents, ref) 
+    		        values (#{title}, #{writer}, #{contents}, 0)
     	</insert>
     	
     	<update id="setRefUpdate" parameterType="BoardVO">
@@ -77,19 +77,20 @@
     	</update>
     	
     	<update id="setReplyUpdate" parameterType="BoardVO"> 
-    		update qna set step+1 
+    		update qna set step=step+1 
     		where 
-    		ref = (select ref from qna whre num=#{num}))
+    		ref = (select ref from qna where num=#{num})
     		and
     		step > (select step from qna where num=#{num})
     	</update>
     	
-    	<insert id="setReplyInsert" parameterType="BoardVO">
-    		 insert into qna(title, writer, contents, contents, ref, step, depth)
+    	<insert id="setReplyInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="num">
+    		 insert into qna(title, writer, contents, ref, step, depth)
     		        values (#{title}, #{writer}, #{contents},
-    		       (select ref from qna where num=#{num}), 
-    		       (select step+1 from qna where num=#{num}), 
-    		       (select depth+1) from qna where num=#{num}))
+    		       (select ref from qna Q where num=#{num}), 
+    		       (select step from qna Q where num=#{num})+1, 
+    		       (select depth from qna Q where num=#{num})+1
+    		       )
     	</insert>
     	
     	<insert id="setFileInsert" parameterType="BoardFileVO">

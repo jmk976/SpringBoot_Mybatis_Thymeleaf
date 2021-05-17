@@ -18,31 +18,32 @@
 	<div class="container">
 	   <div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">Username</span>
-		  <input type="text" name="username" value="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="username" th:value="${session.member.username}" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
 		</div>
 		<div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">Password</span>
-		  <input type="text" name="password" value="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="password" th:value="${session.member.password}" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping">
 		</div>
 		<div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">  &nbsp;&nbsp; Name &nbsp; &nbsp; </span>
-		  <input type="text" name="name"  value="password" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="name"  th:value="${session.member.name}" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="addon-wrapping">
 		</div>
 		<div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">&nbsp;&nbsp;&nbsp;  Email  &nbsp;&nbsp;&nbsp;</span>
-		  <input type="text" name="email"  value="password" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="email"  th:value="${session.member.email}" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="addon-wrapping">
 		</div>
 		<div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">&nbsp;&nbsp;&nbsp; Phone &nbsp;&nbsp;</span>
-		  <input type="text" name="phone"  value="password" class="form-control" placeholder="Phone" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" name="phone"  th:value="${session.member.phone}" class="form-control" placeholder="Phone" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+		<div class="input-group mb-3 flex-nowrap">
+		  <span class="input-group-text" id="addon-wrapping">&nbsp;&nbsp;&nbsp; Photo &nbsp;&nbsp;</span>
+		  <img alt="" src="../resources/upload/member2/${member.memberFileDTO.fileName}">
 		</div>
 		
-		<div class="input-group mb-3">
-		  <input type="file" class="form-control" id="inputGroupFile02">
-		  <label class="input-group-text" for="inputGroupFile02">Upload</label>
-		</div>
+		<a href="./memberUpdate"><button class="btn btn-primary">수정</button></a>
+	    <a href="./memberDelete"><button class="btn btn-primary">탈퇴</button></a>
 		
-		 <input type="submit" id="btn" value="Join" class="btn mb-3 btn-dark"> 
 		
 	</div>
 	<!-- footer -->

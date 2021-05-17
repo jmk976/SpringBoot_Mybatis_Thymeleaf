@@ -22,7 +22,9 @@ import lombok.ToString;
 
 */
 
-@Data                  //lombok의 모든 annotation 선언
+@Data  //lombok의 모든 annotation 선언
+@Getter
+@Setter
 public class BoardVO {
 	
 	private Long num;

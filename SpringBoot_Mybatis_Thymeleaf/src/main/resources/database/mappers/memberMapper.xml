@@ -5,7 +5,19 @@
     
     <mapper namespace="com.ic.s1.member.MemberMapper">
     
-    <select id="memberLogin" parameterType="MemberVO">
-     	select * from member where id = #{id}
+    <select id="getLogin" parameterType="MemberVO" resultType="MemberVO">
+     	select * from member where username = #{username} and password = #{password}
     </select>
+    
+    <insert id="setJoinFile" parameterType="MemberFileVO">
+    	insert into memberFiles (username,fileName, oriName) 
+    	values(#{username}, #{fileName}, #{oriName})
+    </insert>
+    
+    <insert id="setJoin" parameterType="MemberVO">
+    	insert into member (username, password, name, email, phone)
+    	values(#{username}, #{password}, #{name}, #{email}, #{phone})
+    </insert>
+    
+    
     </mapper>
