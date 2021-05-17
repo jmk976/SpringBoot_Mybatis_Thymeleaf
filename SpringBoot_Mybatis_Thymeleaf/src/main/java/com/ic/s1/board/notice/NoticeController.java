@@ -73,7 +73,9 @@ public class NoticeController {
 		
 		Object obj = session.getAttribute("member");
 		MemberVO memberVO = null;
-		String path="redirect:/member/login";
+		String path="common/result";
+		model.addAttribute("msg", "관리자가 아닙니다.");
+		model.addAttribute("path", "./list");
 		//it(obj != null){}
 		if(obj instanceof MemberVO) {
 			memberVO =(MemberVO)obj;
