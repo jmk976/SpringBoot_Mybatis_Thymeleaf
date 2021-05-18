@@ -30,7 +30,7 @@ public class MemberService {
 	public int setJoin(MemberVO memberVO, MultipartFile multipartFile)throws Exception{
 		//1. Member Table에 저장
 		//2. HDD에 저장 
-		 String filePath="upload/member/";
+		 String filePath="upload/member/"; // 자바 개발자가 필
 		 if(multipartFile.getSize()==0) {
 			 String fileName = fileManager.save(multipartFile, filePath);
 			 System.out.println(fileName);

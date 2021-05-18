@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,9 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	@Value("${board.notice.filePath}")
+	private String filePath;
+	
 	@ModelAttribute("board")  // 모든 메서드가 실행될때. 이 메서드가 먼저 시행됨. 
 	public String getBoard() {
 		return "notice";
@@ -37,7 +41,8 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("fileName", fileName);
 		mv.addObject("oriName", oriName);
-		mv.addObject("filePath", "/upload/notice/");
+		mv.addObject("filePath", filePath);
+		//mv.addObject(fileName, mv)
 		
 		// view의 이름은 Bean의 이름과 일치 시켜줘야함
 		mv.setViewName("fileDown");
@@ -49,6 +54,7 @@ public class NoticeController {
 	// /notice/list
 	@GetMapping("list")
 	public String getList(Pager pager, Model model)throws Exception {
+		System.out.println("filePath:"+filePath);
 		List<BoardVO> ar = noticeService.getList(pager);
 	    model.addAttribute("list", ar);
 	    model.addAttribute("pager", pager);
