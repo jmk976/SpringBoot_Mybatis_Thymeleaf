@@ -67,9 +67,30 @@ public class NoticeController {
 	}
 	
 	@GetMapping("insert")
-	public String setInsert(Model model, HttpSession session)throws Exception {
+	public String setInsert(Model model)throws Exception {
 		model.addAttribute("vo", new BoardVO());
 		model.addAttribute("action", "insert");
+		
+		
+		return "board/form";
+	}
+
+	@PostMapping("insert")
+	public String setInsert(BoardVO boardVO, MultipartFile [] files)throws Exception{
+//		System.out.println(files.length);
+//	    for(MultipartFile f : files) {
+//	    	System.out.println(f.getOriginalFilename());
+//	    }
+		
+		int result=noticeService.setInsert(boardVO, files);
+	    return "redirect:./list";
+	}
+	
+	@GetMapping("update")
+	public String setUpdate(BoardVO boardVO, Model model,HttpSession session)throws Exception{
+		boardVO = noticeService.getSelect(boardVO);
+		model.addAttribute("vo", boardVO);
+		model.addAttribute("action", "update");
 		
 		Object obj = session.getAttribute("member");
 		MemberVO memberVO = null;
@@ -86,25 +107,6 @@ public class NoticeController {
 		}
 		return path;
 	}
-
-	@PostMapping("insert")
-	public String setInsert(BoardVO boardVO, MultipartFile [] files)throws Exception{
-//		System.out.println(files.length);
-//	    for(MultipartFile f : files) {
-//	    	System.out.println(f.getOriginalFilename());
-//	    }
-		
-		int result=noticeService.setInsert(boardVO, files);
-	    return "redirect:./list";
-	}
-	
-	@GetMapping("update")
-	public String setUpdate(BoardVO boardVO, Model model)throws Exception{
-		boardVO = noticeService.getSelect(boardVO);
-		model.addAttribute("vo", boardVO);
-		model.addAttribute("action", "update");
-		return "board/form";
-	}
 	
 	@PostMapping("update")
 	public String setUpdate(BoardVO boardVO)throws Exception{
@@ -113,10 +115,22 @@ public class NoticeController {
 	}
 	
 	@GetMapping("delete")
-	public String setDelete(BoardVO boardVO)throws Exception{
-		
-		int result = noticeService.setDelete(boardVO);
-		
-		return "redirect:./list";
+	public String setDelete(BoardVO boardVO,HttpSession session)throws Exception{
+		Model model = null;
+		Object obj = session.getAttribute("member");
+		MemberVO memberVO = null;
+		String path="common/result";
+		model.addAttribute("msg", "관리자가 아닙니다.");
+		model.addAttribute("path", "./list");
+		//it(obj != null){}
+		if(obj instanceof MemberVO) {
+			memberVO =(MemberVO)obj;
+			
+			if(memberVO.getUsername().equals("admin")) {
+				int result = noticeService.setDelete(boardVO);
+				path="board/form";
+			}
+		}
+		return path;
 	}
 }

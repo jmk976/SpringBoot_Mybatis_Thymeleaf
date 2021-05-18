@@ -7,11 +7,11 @@
 <body>
 
 <script type="text/javascript" th:inline="javascript">
-
+	let msg = [[${msg}]];
+	alert(msg);
+	location.href=[[${path}]];
 </script>
- let msg = [[${msg}]];
- alert(msg);
- location.href=[[${path}]];
+ 
 
 </body>
 </html>
