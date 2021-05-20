@@ -8,6 +8,7 @@
   <div th:replace="/fragments/default :: jumbotron"></div>
   <!-- messsage쓸때는  #{message의  key} -->
   <h1 th:text="#{hello}"></h1>
+   <h1 th:text="#{user.welcome(${user},${msg})}"></h1>
   
   <h1 th:text="|User: ${session.member}|"></h1>
   <footer th:replace="/fragments/default :: footer"></footer>
