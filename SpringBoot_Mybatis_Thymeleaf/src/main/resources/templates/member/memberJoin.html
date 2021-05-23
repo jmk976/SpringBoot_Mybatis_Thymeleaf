@@ -16,7 +16,7 @@
 	
 	<div class="container">
 	
-	  <form action="./join" method="post" enctype="multipart/form-data">
+	  <form th:action="@{./join}" action="./join" method="post" enctype="multipart/form-data">
 	   <div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">Username</span>
 		  <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
@@ -29,14 +29,18 @@
 		  <span class="input-group-text" id="addon-wrapping">Password</span>
 		  <input type="password" name="password2" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping">
 		</div>
-		<div class="input-group mb-3 flex-nowrap">
+         		<div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">  &nbsp;&nbsp; Name &nbsp; &nbsp; </span>
-		  <input type="text" name="name" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="addon-wrapping">
-		</div>
+		  <input type="text" th:field="*{name}" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="addon-wrapping">
+		  <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+		 		</div>
+		
 		<div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">&nbsp;&nbsp;&nbsp;  Email  &nbsp;&nbsp;&nbsp;</span>
-		  <input type="text" name="email" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="addon-wrapping">
+		  <input type="text" th:field="*{email}" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="addon-wrapping">
+		  <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
 		</div>
+		
 		<div class="input-group mb-3 flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">&nbsp;&nbsp;&nbsp; Phone &nbsp;&nbsp;</span>
 		  <input type="text" name="phone" class="form-control" placeholder="Phone" aria-label="Username" aria-describedby="addon-wrapping">

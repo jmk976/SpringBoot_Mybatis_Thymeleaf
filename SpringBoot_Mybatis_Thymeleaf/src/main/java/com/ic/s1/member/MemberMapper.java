@@ -14,5 +14,7 @@ public interface MemberMapper {
 	public MemberVO memberLogout (MemberVO memeberVO)throws Exception;
 	
 	public MemberVO memberPage (MemberVO memeberVO)throws Exception;
+	
+	public MemberVO getUsername(MemberVO memberVO)throws Exception;
 
 }

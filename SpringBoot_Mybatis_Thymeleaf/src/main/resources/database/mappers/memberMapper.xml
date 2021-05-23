@@ -19,5 +19,7 @@
     	values(#{username}, #{password}, #{name}, #{email}, #{phone})
     </insert>
     
+    <select id="getUsername"></select>
+    
     
     </mapper>

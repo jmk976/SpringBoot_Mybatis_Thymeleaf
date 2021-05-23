@@ -1,10 +1,14 @@
 package com.ic.s1.member;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,14 +34,20 @@ public class MemberController {
 	}
 	
 	@GetMapping("join")  //void로 바꾸면 이게 경로
-	public String setJoin() throws Exception{
+	public String setJoin(@ModelAttribute MemberVO memberVO) throws Exception{   //model에 집어넣는과 같은 효과 
 		return "member/memberJoin"; //templates 밑에서 찾으러 감 
 	}
 	
 	@PostMapping("join")
-	public String setJoin(MemberVO memberVO, MultipartFile avatar)throws Exception{
-		int result = memberService.setJoin(memberVO, avatar);
-		return "redirect:../";
+	public String setJoin(@Valid MemberVO memberVO, Errors errors, MultipartFile avatar)throws Exception{
+		if(errors !=null && errors.getErrorCount()>0) {
+			return "member/memberJoin";
+			
+			
+	
+		}
+//		if(memberService.memberError(memberVO))
+	   return "redirect:../";
 	}
 	@GetMapping("login")  //void로 바꾸면 이게 경로
 	public String getLogin() throws Exception{
