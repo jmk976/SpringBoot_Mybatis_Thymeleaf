@@ -37,8 +37,12 @@ public class MemberService implements UserDetailsService {
 		@Override
 		public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 			MemberVO memberVO = new MemberVO();
+			System.out.println("UserName : "+username);
+
 			memberVO.setUsername(username);
 			memberVO = memberMapper.getLogin(memberVO);
+			System.out.println("MemberVO : "+memberVO);
+
 			return memberVO;  //아이디와 비번 둘다 가지고 있고 security가 알아서 처리 
 		}
    

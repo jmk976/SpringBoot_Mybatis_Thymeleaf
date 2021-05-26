@@ -22,6 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configure(WebSecurity web) throws Exception {
         //Security를 무시하는 경로 설정
 		web.ignoring()
+		   .antMatchers("/resources/**")
 		   .antMatchers("/images/**")
 		   .antMatchers("/css/**")
 		   .antMatchers("/js/**")
@@ -36,16 +37,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		//url에 따른 로그인, 권한 설
 		http
-				.cors().and()
-				.csrf().disable()
+			//	.cors().and()
+			//	.csrf().disable()
 				.authorizeRequests()
 					.antMatchers("/").permitAll()
 					.antMatchers("/notice/list", "/notice/select").permitAll()
 					.antMatchers("/notice/**").hasRole("ADMIN")
 					.antMatchers("/qna/list").permitAll()
-					.antMatchers("/qna/**").hasAnyRole("MEMBER","ADMIN")
+					.antMatchers("/qna/**").hasAnyRole("ADMIN","MEMBER")
 					.antMatchers("/member/join").permitAll()
-					.antMatchers("/member/**").hasAnyRole("MEMBER","ADMIN")
+					.antMatchers("/member/**").hasAnyRole("ADMIN","MEMBER")
 					.anyRequest().authenticated()
 					.and()
 				.formLogin()
@@ -55,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 					.loginPage("/member/login")
 					.defaultSuccessUrl("/member/memberLoginResult") //로그인 성공하면 저 url로 보내자
 					.permitAll()
+					.and()
 					;
 			 
 	}

@@ -9,7 +9,7 @@
      	select M.*, R.* from 
 		member M left join member_role MR
 		on M.username = MR.username
-		inner join role R
+	    left join role R
 		on MR.id = R.id
 		where M.username = #{username}
     </select>

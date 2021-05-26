@@ -30,7 +30,7 @@ public class MemberController {
 	public String logout(HttpSession session)throws Exception{
 		session.invalidate();
 		
-		return "redirect:/";
+		return "redirect:../";
 	}
 	
 	@GetMapping("join")  //void로 바꾸면 이게 경로

@@ -71,5 +71,11 @@ public class MemberVO implements UserDetails {
 		return true;
 	}
 	
+	@Override    //강사님꺼 복사
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return this.enabled;
+	}
+	
 
 }
