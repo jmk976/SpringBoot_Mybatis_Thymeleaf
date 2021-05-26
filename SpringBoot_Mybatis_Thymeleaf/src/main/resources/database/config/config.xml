@@ -13,6 +13,8 @@
   		<typeAlias type="com.ic.s1.util.Pager" alias="Pager" />
   		<typeAlias type="com.ic.s1.member.MemberVO" alias="MemberVO" />
   		<typeAlias type="com.ic.s1.member.MemberFileVO" alias="MemberFileVO" />
+  		<typeAlias type="com.ic.s1.member.RoleVO" alias="RoleVO" />
+  		
   	</typeAliases>
   
   

@@ -40,32 +40,43 @@ public class MemberController {
 	
 	@PostMapping("join")
 	public String setJoin(@Valid MemberVO memberVO, Errors errors, MultipartFile avatar)throws Exception{
-		if(errors !=null && errors.getErrorCount()>0) {
+		System.out.println("Join Process" + memberVO.getName().length());
+		//		if(errors !=null && errors.getErrorCount()>0) {
+			
+		if(memberService.memberError(memberVO, errors)) {
 			return "member/memberJoin";
-			
-			
-	
 		}
-//		if(memberService.memberError(memberVO))
+		
+		
+		 int result = memberService.setJoin(memberVO, avatar);
+
 	   return "redirect:../";
 	}
+	
+	
 	@GetMapping("login")  //void로 바꾸면 이게 경로
 	public String getLogin() throws Exception{
 		return "member/memberLogin"; //templates 밑에서 찾으러 감 
 	}
 	
-	@PostMapping("login")
-	public String getrLogin(MemberVO memberVO, HttpSession session)throws Exception{
-		  //로긴 성공한 객체를session에 넣어라
-		memberVO = memberService.getLogin(memberVO);
-		
-	    if(memberVO !=null) {
-	    	session.setAttribute("member", memberVO);
-	    }
-		//session.setAttribute("member", memberVO);
-		
+	@GetMapping("memberLoginResult")     // 로그인 폼에서 서비스로 보내 로그인 처리해야하는데 이제secutiry 가 알아서 처 
+	public String memberLoginResult () throws Exception {
+		System.out.println("Login 성공");
 		return "redirect:/";
-		
 	}
+	
+//	@PostMapping("login")
+//	public String getrLogin(MemberVO memberVO, HttpSession session)throws Exception{
+//		  //로긴 성공한 객체를session에 넣어라
+//		memberVO = memberService.getLogin(memberVO);
+//		
+//	    if(memberVO !=null) {
+//	    	session.setAttribute("member", memberVO);
+//	    }
+//		//session.setAttribute("member", memberVO);
+//		
+//		return "redirect:/";
+//		
+//	}
 
 }
