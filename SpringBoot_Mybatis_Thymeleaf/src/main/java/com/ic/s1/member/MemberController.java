@@ -1,10 +1,15 @@
 package com.ic.s1.member;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,10 +64,44 @@ public class MemberController {
 		return "member/memberLogin"; //templates 밑에서 찾으러 감 
 	}
 	
-	@GetMapping("memberLoginResult")     // 로그인 폼에서 서비스로 보내 로그인 처리해야하는데 이제secutiry 가 알아서 처 
-	public String memberLoginResult () throws Exception {
+	@GetMapping("loginFail")
+	public String loginFail(Model model) throws Exception{
+		System.out.println("Login Fail");
+		//model.addAttribute(getLogin(), model);  따로 핸들링 하고 싶으면.. 
+		return "redirect:/member/login";
+	}
+	
+	@GetMapping("memberLoginResult")     // 로그인 폼에서 서비스로 보내 로그인 처리해야하는데 이제secutiry 가 알아서 처리
+	public String memberLoginResult (HttpSession session) throws Exception {
+		
+		//session의 속성명들 꺼내오기
+		Enumeration<String> en = session.getAttributeNames();
+		
+		while(en.hasMoreElements()) {
+			System.out.println("Attribute Name: "+en.nextElement());
+		}
+		
+		//로그인 시 session의 속성명 :  SPRING_SECURITY_CONTEXT
+		
+	    Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
+   
+	   System.out.println(obj); // 출력: SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=MemberVO(username=id5, password1=null, password=$2a$10$LrSoOIzV436lfHCF2sORVeVJ9kqAsc0LxD5kQQvFbEspGI4H8beDq, name=id5, email=id5@naver.com, phone=0105555555, enabled=true, roles=[RoleVO(id=2, roleName=ROLE_MEMBER)]), Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=248E670B6C3BAB24BE5129029DD7A672], Granted Authorities=[ROLE_MEMBER]]]
+	    
+	   
+	    SecurityContextImpl sc = (SecurityContextImpl)obj;
+	    
+	   Authentication auth = sc.getAuthentication();
+	   
+	   System.out.println("===================================");
+	   System.out.println("name: "+auth.getName());
+	   System.out.println("details: "+auth.getDetails());
+	   System.out.println("principal: "+auth.getPrincipal());
+	   System.out.println("authorities: "+auth.getAuthorities());
+	   System.out.println("===================================");
+ 
+	    
 		System.out.println("Login 성공");
-		return "redirect:/";
+		return "redirect:/";  // 로그인 성공 을 session객체에 받아 놓는다 
 	}
 	
 //	@PostMapping("login")
