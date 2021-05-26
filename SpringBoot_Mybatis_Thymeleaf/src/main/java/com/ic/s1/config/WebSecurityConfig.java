@@ -37,8 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		//url에 따른 로그인, 권한 설
 		http
-			//	.cors().and()
-			//	.csrf().disable()
+				.cors().and()
+				.csrf().disable()
 				.authorizeRequests()
 					.antMatchers("/").permitAll()
 					.antMatchers("/notice/list", "/notice/select").permitAll()
@@ -56,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 					.loginPage("/member/login")
 					.defaultSuccessUrl("/member/memberLoginResult") //로그인 성공하면 저 url로 보내자
 					.permitAll()
-					.and()
+					.and() 
 					;
 			 
 	}

@@ -99,7 +99,7 @@ public class MemberService implements UserDetailsService {
 		//2.Role Table 저장
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("username", memberVO.getUsername());
-		map.put("roleName", "role_member");
+		map.put("roleName", "ROLE_MEMBER");
 		result = memberMapper.setMemberRole(map);
 		//2. HDD에 저장 
 		 String filePath="upload/member/"; // 자바 개발자가 필
@@ -109,7 +109,7 @@ public class MemberService implements UserDetailsService {
 			 MemberFileVO memberFileVO = new MemberFileVO();
 			 memberFileVO.setFileName(fileName);
 			 memberFileVO.setOriName(multipartFile.getOriginalFilename());
-			 memberFileVO.setUsername(memberVO.getUsername());
+			 memberFileVO.setUsername(memberVO.getUsername()); 
 		 //3. MemberFiles table에 저장
 			result = memberMapper.setJoinFile(memberFileVO);
 			}
